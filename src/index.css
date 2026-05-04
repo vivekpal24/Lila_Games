@@ -1,0 +1,65 @@
+/*
+ * index.css — Lila Viz global styles
+ * Dark gaming theme. Space Mono for labels, Syne for headings.
+ * Tailwind base + custom design tokens.
+ */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
+
+  html, body, #root {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background-color: #0a0b0f;
+    color: #e8e8e8;
+  }
+
+  body {
+    font-family: 'Space Mono', monospace;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+  }
+
+  /* Thin scrollbar to match the dark theme */
+  ::-webkit-scrollbar { width: 4px; height: 4px; }
+  ::-webkit-scrollbar-track { background: #111318; }
+  ::-webkit-scrollbar-thumb { background: #1e2130; border-radius: 2px; }
+  ::-webkit-scrollbar-thumb:hover { background: #5a5f6e; }
+}
+
+@layer components {
+  .panel {
+    @apply bg-surface border border-border rounded-lg p-4 shadow-panel;
+  }
+
+  .btn {
+    @apply px-3 py-1.5 rounded text-sm font-mono transition-all duration-150 cursor-pointer
+           border border-border bg-surface text-text
+           hover:border-accent hover:text-accent;
+  }
+
+  .btn-accent {
+    @apply btn bg-accent border-accent text-white hover:bg-orange-600 hover:border-orange-600;
+  }
+
+  .badge {
+    @apply inline-flex items-center px-2 py-0.5 rounded text-xs font-mono
+           bg-border text-muted;
+  }
+
+  .badge-kill  { @apply badge bg-accent/20 text-accent; }
+  .badge-death { @apply badge bg-red-900/30 text-red-400; }
+  .badge-loot  { @apply badge bg-cyan-900/30 text-accent2; }
+}
