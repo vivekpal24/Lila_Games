@@ -21,10 +21,10 @@ export default defineConfig({
   build: {
     rollupOptions: {
       output: {
-        manualChunks: {
-          'deck': ['deck.gl', '@deck.gl/core', '@deck.gl/layers'],
-          'arrow': ['apache-arrow', 'hyparquet'],
-          'vendor': ['react', 'react-dom', 'zustand']
+        manualChunks(id) {
+          if (id.includes('deck.gl') || id.includes('@deck.gl')) return 'deck';
+          if (id.includes('apache-arrow') || id.includes('hyparquet')) return 'arrow';
+          if (id.includes('node_modules')) return 'vendor';
         }
       }
     }
